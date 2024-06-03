@@ -1,0 +1,567 @@
+/* Existing styles */
+/* Basic styling */
+body {
+    font-family: Arial, sans-serif;
+    /* background-color: #000; */
+    background-image: url("https://bdhsdsjadjcunqriaaef.supabase.co/storage/v1/object/public/album_arts/bg.png");
+    background-size: cover;
+    color: #fff;
+  }
+  
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+  
+  .logo img {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+  }
+  
+  .lightning-link a {
+    color: #fff;
+    text-decoration: none;
+    background-color: #444;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+  }
+  
+  .sort-options {
+    display: flex;
+    justify-content: center;
+    margin: 1rem;
+  }
+  
+  .sort-options button {
+    background-color: #555;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    margin: 0 0.5rem;
+    cursor: pointer;
+  }
+  
+  .sort-options button:hover {
+    background-color: #777;
+  }
+  
+  .album-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    padding: 2rem;
+  }
+  
+  .album {
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    overflow: hidden;
+    width: 200px;
+    cursor: pointer;
+    transition: transform 0.3s;
+  }
+  
+  .album img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .album:hover {
+    transform: scale(1.05);
+  }
+  
+  .album .add-to-cart {
+    background-color: #555;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .album .add-to-cart:hover {
+    background-color: #777;
+  }
+  
+  .checkout-card {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: rgba(0, 0, 0, 0.9);
+    color: #fff;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    width: 300px;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  .checkout-card.active {
+    display: block;
+    opacity: 1;
+  }
+  
+  .checkout-header {
+    background-color: #444;
+    padding: 0.5rem;
+    border-radius: 10px 10px 0 0;
+  }
+  
+  #clear-button {
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 1rem;
+  }
+  
+  #clear-button:hover {
+    background-color: #c0392b;
+  }
+  
+  /* Additional styles for scrollable checkout card and delete icon */
+  
+  .checkout-body {
+    max-height: 300px; /* Adjust height as needed */
+    overflow-y: auto;
+  }
+  
+  .album-details-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+  
+  .album-details-item h3 {
+    margin: 0;
+  }
+  
+  .delete-icon {
+    cursor: pointer;
+    color: #e74c3c;
+  }
+  
+  .delete-icon:hover {
+    color: #c0392b;
+  }
+  
+  /* Media Queries for Responsive Design */
+  @media (max-width: 768px) {
+    header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .logo img {
+      width: 40px;
+      height: 40px;
+    }
+  
+    .lightning-link a {
+      padding: 0.5rem;
+      font-size: 0.9rem;
+    }
+  
+    .sort-options {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .sort-options button {
+      margin: 0.5rem 0;
+      width: 80%;
+    }
+  
+    .checkout-card {
+      width: 90%;
+      bottom: 10px;
+      right: 5%;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .logo img {
+      width: 30px;
+      height: 30px;
+    }
+  
+    .lightning-link a {
+      padding: 0.5rem;
+      font-size: 0.8rem;
+    }
+  
+    .sort-options {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .sort-options button {
+      margin: 0.5rem 0;
+      width: 90%;
+    }
+  
+    .checkout-card {
+      width: 95%;
+      bottom: 5px;
+      right: 2.5%;
+    }
+  }
+  /* Existing styles */
+  
+  /* Modal styles */
+  .modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    width: 80%;
+    max-width: 500px;
+    color: #fff;
+    text-align: center;
+    max-height: 80vh;
+    overflow: hidden;
+  }
+  
+  .modal img {
+    width: 50%; /* Adjusted size to fit tracks */
+    height: auto;
+    border-radius: 10px;
+  }
+  
+  .modal h3 {
+    margin-top: 1rem;
+  }
+  
+  .modal .track-list {
+    margin-top: 1rem;
+    text-align: left;
+    max-height: 200px; /* Adjust this as needed */
+    overflow-y: auto;
+  }
+  
+  .modal .track-list li {
+    list-style: none;
+    margin-bottom: 0.5rem;
+  }
+  
+  .modal .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #fff;
+  }
+  
+  .modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 999;
+  }
+  
+  /* Checkout card styles */
+  .checkout-card {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: rgba(0, 0, 0, 0.9);
+    color: #fff;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    width: 300px;
+    max-width: 90%;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  .checkout-card.active {
+    display: block;
+    opacity: 1;
+  }
+  
+  .checkout-header {
+    background-color: #444;
+    padding: 0.5rem;
+    border-radius: 10px 10px 0 0;
+  }
+  
+  #clear-button,
+  #checkout-button {
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 1rem;
+  }
+  
+  #checkout-button {
+    background-color: #3498db;
+    margin-left: 0.5rem;
+  }
+  
+  #clear-button:hover {
+    background-color: #c0392b;
+  }
+  
+  #checkout-button:hover {
+    background-color: #2980b9;
+  }
+  
+  .album-details-item .thumbnail {
+    width: 24px;
+    height: 24px;
+    border-radius: 5px;
+    margin-right: 0.5rem;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .logo img {
+      width: 40px;
+      height: 40px;
+    }
+  
+    .lightning-link a {
+      padding: 0.5rem;
+      font-size: 0.9rem;
+    }
+  
+    .sort-options {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .sort-options button {
+      margin: 0.5rem 0;
+      width: 80%;
+    }
+  
+    .checkout-card {
+      width: 90%;
+      bottom: 10px;
+      right: 5%;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .logo img {
+      width: 30px;
+      height: 30px;
+    }
+  
+    .lightning-link a {
+      padding: 0.5rem;
+      font-size: 0.8rem;
+    }
+  
+    .sort-options {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .sort-options button {
+      margin: 0.5rem 0;
+      width: 90%;
+    }
+  
+    .checkout-card {
+      width: 95%;
+      bottom: 5px;
+      right: 2.5%;
+    }
+  }
+  
+
+
+/* Payment modal styles */
+.payment-modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    width: 80%;
+    max-width: 400px;
+    color: #fff;
+    text-align: center;
+}
+
+.payment-modal-content {
+    position: relative;
+}
+
+.payment-modal-content .close-payment {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #fff;
+}
+
+/* Checkout card styles */
+.checkout-card {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: rgba(0, 0, 0, 0.9);
+    color: #fff;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    width: 300px;
+    max-width: 90%;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.checkout-card.active {
+    display: block;
+    opacity: 1;
+}
+
+.checkout-header {
+    background-color: #444;
+    padding: 0.5rem;
+    border-radius: 10px 10px 0 0;
+}
+
+#clear-button, #checkout-button {
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+#checkout-button {
+    background-color: #3498db;
+    margin-left: 0.5rem;
+}
+
+#clear-button:hover {
+    background-color: #c0392b;
+}
+
+#checkout-button:hover {
+    background-color: #2980b9;
+}
+
+.album-details-item .thumbnail {
+    width: 24px;
+    height: 24px;
+    border-radius: 5px;
+    margin-right: 0.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .logo img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .lightning-link a {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    .sort-options {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .sort-options button {
+        margin: 0.5rem 0;
+        width: 80%;
+    }
+
+    .checkout-card {
+        width: 90%;
+        bottom: 10px;
+        right: 5%;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .logo img {
+        width: 30px;
+        height: 30px;
+    }
+
+    .lightning-link a {
+        padding: 0.5rem;
+        font-size: 0.8rem;
+    }
+
+    .sort-options {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .sort-options button {
+        margin: 0.5rem 0;
+        width: 90%;
+    }
+
+    .checkout-card {
+        width: 95%;
+        bottom: 5px;
+        right: 2.5%;
+    }
+}
